@@ -1,11 +1,14 @@
-import React from "react";
-
+import React from 'react';
+import { Cards, Chart, CountryPicker } from './components';
+import styles from './App.module.css';
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>Start</h1>
+    return (                      
+      <div className={styles.container}> {/* dynamic styles */}
+        <Cards />
+        <CountryPicker />
+        <Chart />
       </div>
     )
   }
