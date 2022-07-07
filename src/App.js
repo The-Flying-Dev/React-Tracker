@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Cards, Chart, CountryPicker } from './components'; //imports directly from components/index.js
 import styles from './App.module.css';
 import { fetchData } from './api';
