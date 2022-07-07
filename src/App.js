@@ -1,13 +1,15 @@
 import React from 'react';
-import { Cards, Chart, CountryPicker } from './components'; //imports directly from components/index.js
+import { Cards, CountryPicker, Chart } from './components';
+import { fetchData } from './api/';
 import styles from './App.module.css';
-import { fetchData } from './api';
+
+import image from './images/image.png';
 
 class App extends React.Component {
-
   //state declaration with empty object inside class
   state = {
     data: {},
+    country: '',
   }
 
   //first lifecycle method
@@ -17,18 +19,26 @@ class App extends React.Component {
     //where the current State is being updated 
     this.setState({ data: fetchedData });
   }
-  
+
+  handleCountryChange = async (country) => {
+    const fetchedData = await fetchData(country);
+
+    this.setState({ data: fetchedData, country: country });
+  }
+
   render() {
     //destructure the data object then pass it as a prop to the Card component
-    const { data } = this.state;
+    const { data, country } = this.state;
 
-    return (                      
-      <div className={styles.container}> {/* dynamic styles */}
+    return (
+      <div className={styles.container}>
+        <img className={styles.image} src={image} alt="COVID-19" />
         <Cards data={data} />
-        <CountryPicker />
-        <Chart />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={data} country={country} /> 
       </div>
-    )
+    );
   }
 }
+
 export default App;
