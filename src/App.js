@@ -1,15 +1,14 @@
 import React from 'react';
-import { Cards, CountryPicker, Chart } from './components';
+//importing all components from src/components/index.js
+import { Cards, CountryPicker, Chart } from './components'; 
 import { fetchData } from './api/';
 import styles from './App.module.css';
-
-
 import image from './images/image.png';
 
-
+//top level component
 
 class App extends React.Component {
-  //state declaration with empty object inside class
+  //state declaration with empty object inside class, no need to use constructor
   state = {
     data: {},
     country: '',    
@@ -38,6 +37,7 @@ class App extends React.Component {
     //destructure the data object then pass it as a prop to the Card component
     const { data, country } = this.state;   
 
+    //all components placed here as App is the top level component
     return (
       <div className={styles.container}>
         <img className={styles.image} src={image} alt="COVID-19" />

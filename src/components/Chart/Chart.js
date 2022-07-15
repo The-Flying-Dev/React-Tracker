@@ -3,9 +3,13 @@ import { Line, Bar } from 'react-chartjs-2';
 import { fetchDailyData } from '../../api';
 import styles from './Chart.module.css';
 
-
+//pass in data object and destructure
 const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+  //initial state
   const [dailyData, setDailyData] = useState([]);
+
+  // side effect to fetch data with empty dependency array 
+  // this hook will only run once after the component is rendered
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -15,6 +19,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     fetchAPI();
   }, []);
 
+  
   const barChart = (
     confirmed ? (
       <Bar
@@ -65,6 +70,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     ) : null
   );
 
+  // returning whichever chart is chosen
   return (
     <div className={styles.container}>
       {country ? barChart : lineChart}

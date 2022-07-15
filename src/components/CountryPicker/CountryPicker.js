@@ -3,8 +3,14 @@ import { NativeSelect, FormControl } from '@material-ui/core';
 import { fetchCountries } from '../../api';
 import styles from './CountryPicker.module.css';
 
+//pass in event handler as prop
 const CountryPicker = ({ handleCountryChange }) => {
+
+  //initial state
   const [fetchedCountries, setFetchedCountries] = useState([]);
+
+   // side effect to fetch data with state variable inside dependency array 
+  //  causes this hook to run each time the state is updated
 
   useEffect(() => {
     const fetchAPI = async () => {
